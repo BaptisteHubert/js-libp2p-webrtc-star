@@ -1,7 +1,10 @@
+// @ts-nocheck
 import { config } from './config.js'
 import { Server } from 'socket.io'
 import client from 'prom-client'
 import type { HandshakeSignal, WebRTCStarSocket } from '@libp2p/webrtc-star-protocol'
+import { createServer } from 'https'
+import * as fs from 'fs'
 
 const log = config.log
 
@@ -15,8 +18,14 @@ const fake = {
 }
 
 export function socketServer (peers: Map<string, WebRTCStarSocket>, hasMetrics: boolean) {
-  const io = new Server({
-    allowEIO3: true // allow socket.io v2 clients to connect
+
+  const secureHttpServer = createServer({
+    key: fs.readFileSync("../src/security/key.pem"),
+    cert: fs.readFileSync("../src/security/cert.pem")
+  });
+
+  const io = new Server(secureHttpServer,{
+    allowEIO3: true, // allow socket.io v2 clients to connect
   })
   // @ts-expect-error types are different?
   io.on('connection', (socket) => handle(socket))

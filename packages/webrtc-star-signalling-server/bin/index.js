@@ -20,7 +20,7 @@ const argv = minimist(process.argv.slice(2), {
 
 ;(async () => {
   const server = await sigServer({
-    port: argv.port || process.env.PORT || 9090,
+    port: argv.port || process.env.PORT || 4201,
     host: argv.host || process.env.HOST || '0.0.0.0',
     metrics: !(argv.disableMetrics || process.env.DISABLE_METRICS)
   })

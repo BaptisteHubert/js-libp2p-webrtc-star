@@ -1,5 +1,5 @@
 /* eslint-env mocha */
-
+// @ts-nocheck
 import sigServerTests from './sig-server.js'
 import { connect as socketClientV4 } from 'socket.io-client'
 import { io as socketClientV3 } from 'socket.io-client-v3'

@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { logger } from '@libp2p/logger'
 
 const log = logger('signalling-server')

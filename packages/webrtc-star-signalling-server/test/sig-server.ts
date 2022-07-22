@@ -1,5 +1,5 @@
 /* eslint-env mocha */
-
+// @ts-nocheck
 import { expect } from 'aegir/chai'
 import { Multiaddr } from '@multiformats/multiaddr'
 import { SigServer, sigServer } from '../src/index.js'

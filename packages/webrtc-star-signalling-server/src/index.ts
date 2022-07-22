@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { Server } from '@hapi/hapi'
 import Inert from '@hapi/inert'
 
