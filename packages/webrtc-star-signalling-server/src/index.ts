@@ -27,8 +27,8 @@ export interface SigServer extends Server {
 }
 
 export async function sigServer (options: Options = {}) {
-  const port = options.port ?? config.hapi.port
-  const host = options.host ?? config.hapi.host
+  const port = /*options.port ??*/ config.hapi.port
+  const host = /*options.host ??*/ config.hapi.host
   const peers = new Map<string, WebRTCStarSocket>()
 
   const http: SigServer = Object.assign(new Server({
@@ -56,9 +56,12 @@ export async function sigServer (options: Options = {}) {
   http.route({
     method: 'GET',
     path: '/',
-    handler: (request, reply) => reply.file(path.join(currentDir, 'index.html'), {
-      confine: false
-    })
+    handler: {
+        file: {
+            path: '../src/index.html',
+            confine: false
+        }
+    }
   })
 
   if (options.metrics === true) {

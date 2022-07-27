@@ -6,8 +6,8 @@ const log = logger('signalling-server')
 export const config = {
   log: log,
   hapi: {
-    port: process.env.PORT ?? 13579,
-    host: '0.0.0.0',
+    port: process.env.PORT ?? 4201,
+    host: '127.0.0.1',
     options: {
       routes: {
         cors: true
